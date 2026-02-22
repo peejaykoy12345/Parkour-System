@@ -33,7 +33,7 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 end)
 
 RunService.Heartbeat:Connect(function(deltaTime)
-    print(`{ledgeAvailable} and not {holding} and {ParkourUtils:CanPlayerClimbLedge(char)}`)
+    -- print(`{ledgeAvailable} and not {holding} and {ParkourUtils:CanPlayerClimbLedge(char)}`)
     if ledgeAvailable and not holding and ParkourUtils:CanPlayerClimbLedge(char) then
         ledgeAvailable = false
         holding = true
