@@ -48,7 +48,6 @@ local MINIMUM_HEIGHT_TO_WALL_RUN = 12
 
 function Utils:IsOnGround(char: Model) : boolean
     local result = RaycastToADirection(char, char.HumanoidRootPart, Vector3.new(0, -1, 0), MINIMUM_HEIGHT_TO_WALL_RUN)
-    print(result)
     local isOnGround = result ~= nil
 	return isOnGround
 end
