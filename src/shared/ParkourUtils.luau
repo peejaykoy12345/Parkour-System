@@ -75,4 +75,9 @@ function Utils:CanWallRun(char: Model): (RaycastResult?, string?)
     return result, direction
 end
 
+function Utils:CanVault(char: Model): RaycastResult?
+    local hrp = char.HumanoidRootPart
+    return RaycastToADirection(char, hrp, hrp.CFrame.LookVector * 7 + hrp.CFrame.UpVector * -5, 1)
+end
+
 return Utils
