@@ -6,3 +6,4 @@ realm = "shared"
 
 [dependencies]
 remotes = "chipioindustries/remotes@2.0.0"
+raycast-helper = "egomoose/raycast-helper@3.0.1"
