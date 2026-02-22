@@ -28,7 +28,7 @@ local player = players.LocalPlayer
 local m = player:GetMouse()
 m.Icon = "http://www.roblox.com/asset/?id=4625402759" -- replaces mouse icon
 local character = player.Character or player.CharacterAdded:wait()
-local humanoidpart = character.HumanoidRootPart
+local humanoidpart = character:WaitForChild("HumanoidRootPart")
 
 local head = character:WaitForChild("Head")
 local CamPos,TargetCamPos = cam.CoordinateFrame.p,cam.CoordinateFrame.p 
