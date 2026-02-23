@@ -31,7 +31,6 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
         climb()
     end
 
-    
 end)
 
 RunService.Heartbeat:Connect(function(deltaTime)

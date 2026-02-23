@@ -23,7 +23,12 @@ function Utils:CanPlayerClimbLedge(char: Model) : boolean
 	local part: BasePart = result.Instance
 	
 	if part.Size.Y >= 7 then
-		if head.Position.Y >= (part.Position.Y + (part.Size.Y / 2)) - 1 and head.Position.Y <= part.Position.Y + (part.Size.Y / 2) and  hrp.Velocity.Y <= 0 then
+        local topOfPart = part.Position.Y + (part.Size.Y / 2)   
+        local headY = head.Position.Y
+        local falling = hrp.Velocity.Y <= 0
+        local isNearTop = headY >= topOfPart - 1 and headY <= topOfPart
+
+		if isNearTop and falling then
             return true
         end
 	end
@@ -42,6 +47,16 @@ local function RaycastToADirection(char: Model, hrp: BasePart, direction: Vector
     })
 
     return result
+end
+
+local MINIMUM_HEIGHT_TO_WALL_JUMP = 6
+
+function Utils:CanWallJump(char: Model): boolean
+    if self:IsOnGround(char, MINIMUM_HEIGHT_TO_WALL_JUMP) then return end
+    local hrp = char.HumanoidRootPart
+    local result = RaycastToADirection(char, hrp, -hrp.CFrame.LookVector, 3) 
+    local canWallJump = result ~= nil
+    return canWallJump
 end
 
 local MINIMUM_HEIGHT_TO_WALL_RUN = 5
