@@ -83,12 +83,12 @@ RunService.Heartbeat:Connect(function()
         bp.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
 		bp.Position = hrp.Position + hrp.CFrame.LookVector * 10 - Vector3.new(0, 3, 0)
 
-        if direction == "Left" and not anim then
+        --[[if direction == "Left" and not anim then
             anim = AnimationPlayer:Play(char, 125856691514675)
         elseif direction == "Right" and not anim then
             anim = AnimationPlayer:Play(char, 122731390049670)
-        end
-        
+        end]]
+
     else
         for _, child in pairs(hrp:GetChildren()) do
             if child.Name == "WallrunWeld" or child.Name == "WallrunBodyPosition" then
