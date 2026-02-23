@@ -54,7 +54,7 @@ local MINIMUM_HEIGHT_TO_WALL_JUMP = 6
 function Utils:CanWallJump(char: Model): boolean
     if self:IsOnGround(char, MINIMUM_HEIGHT_TO_WALL_JUMP) then return end
     local hrp = char.HumanoidRootPart
-    local result = RaycastToADirection(char, hrp, -hrp.CFrame.LookVector, 3) 
+    local result = RaycastToADirection(char, hrp, -hrp.CFrame.LookVector, 4) 
     local canWallJump = result ~= nil
     return canWallJump
 end
