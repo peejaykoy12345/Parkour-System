@@ -4,6 +4,7 @@ local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 
 local ParkourUtils = require(ReplicatedStorage.Shared.ParkourUtils)
+local AnimationPlayer = require(ReplicatedStorage.Shared.AnimationPlayer)
 
 local plr = Players.LocalPlayer
 local char = plr.Character or plr.CharacterAdded:Wait()
@@ -48,6 +49,8 @@ local MINIMUM_HEIGHT_TO_START_WALL_RUN = 9
 -- Track whether a wall run has started or not
 local hasStarted = false
 
+local anim: Animation
+
 RunService.Heartbeat:Connect(function()
     -- We only check if it's on ground if it started and if we're already wall running then we don't
     if not hasStarted then
@@ -79,11 +82,23 @@ RunService.Heartbeat:Connect(function()
         bp.Name = "WallrunBodyPosition"
         bp.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
 		bp.Position = hrp.Position + hrp.CFrame.LookVector * 10 - Vector3.new(0, 3, 0)
+
+        if direction == "Left" and not anim then
+            anim = AnimationPlayer:Play(char, 125856691514675)
+        elseif direction == "Right" and not anim then
+            anim = AnimationPlayer:Play(char, 122731390049670)
+        end
+        
     else
         for _, child in pairs(hrp:GetChildren()) do
             if child.Name == "WallrunWeld" or child.Name == "WallrunBodyPosition" then
                 child:Destroy()
             end
+        end
+
+        if anim then
+            anim:Stop()
+            anim = nil
         end
 
         hasStarted = false

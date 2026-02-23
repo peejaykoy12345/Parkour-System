@@ -4,6 +4,7 @@ local Players = game:GetService("Players")
 
 local ParkourUtils = require(ReplicatedStorage.Shared.ParkourUtils)
 local VelocityUtils = require(ReplicatedStorage.Shared.VelocityUtils)
+local AnimationPlayer = require(ReplicatedStorage.Shared.AnimationPlayer)
 
 local plr = Players.LocalPlayer
 local char = plr.Character or plr.CharacterAdded:Wait()
@@ -21,6 +22,8 @@ RunService.Heartbeat:Connect(function()
 
     vaultAvailable = false
     VelocityUtils:AddBodyVelocity(hrp, hrp.CFrame.LookVector * 20 + Vector3.new(0, 30, 0), 0.15)
+
+    AnimationPlayer:Play(char, 102530332076601)
 
     task.wait(0.75)
     vaultAvailable = true

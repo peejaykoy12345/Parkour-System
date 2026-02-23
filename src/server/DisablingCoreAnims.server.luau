@@ -1,0 +1,6 @@
+game.Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        local animate = character:WaitForChild("Animate")
+        animate:Destroy()
+    end)
+end)
