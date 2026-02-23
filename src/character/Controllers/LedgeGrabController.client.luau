@@ -30,6 +30,8 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
     if input.KeyCode == Enum.KeyCode.Space and holding then
         climb()
     end
+
+    
 end)
 
 RunService.Heartbeat:Connect(function(deltaTime)

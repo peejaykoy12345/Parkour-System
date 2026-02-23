@@ -44,10 +44,10 @@ local function RaycastToADirection(char: Model, hrp: BasePart, direction: Vector
     return result
 end
 
-local MINIMUM_HEIGHT_TO_WALL_RUN = 12
+local MINIMUM_HEIGHT_TO_WALL_RUN = 5
 
-function Utils:IsOnGround(char: Model) : boolean
-    local result = RaycastToADirection(char, char.HumanoidRootPart, Vector3.new(0, -1, 0), MINIMUM_HEIGHT_TO_WALL_RUN)
+function Utils:IsOnGround(char: Model, howDown: number) : boolean
+    local result = RaycastToADirection(char, char.HumanoidRootPart, Vector3.new(0, -1, 0), howDown)
     local isOnGround = result ~= nil
 	return isOnGround
 end
@@ -55,7 +55,7 @@ end
 function Utils:CanWallRun(char: Model): (RaycastResult?, string?)
     local hrp = char.HumanoidRootPart
 
-    if self:IsOnGround(char) then return end
+    if self:IsOnGround(char, MINIMUM_HEIGHT_TO_WALL_RUN) then return end
 
     local rayL = RaycastToADirection(char, hrp, -hrp.CFrame.RightVector)
     local rayR = RaycastToADirection(char, hrp, hrp.CFrame.RightVector)
